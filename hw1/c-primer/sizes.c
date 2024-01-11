@@ -63,8 +63,38 @@ int main() {
   PRINT_SIZE(you);
 
   // White-up 3
-  int a = 7;
-  PRINT_SIZE(&a);
+  int int_v = 7;
+  PRINT_SIZE(&int_v);
+  long long_v = 7;
+  PRINT_SIZE(&long_v);
+  char char_v = 'c';
+  PRINT_SIZE(&char_v);
+  float float_v = 7.0;
+  PRINT_SIZE(&float_v);
+  double double_v = 7.0;
+  PRINT_SIZE(&double_v);
+  unsigned int unsigned_int_v = 7;
+  PRINT_SIZE(&unsigned_int_v);
+  long long long_long_v = 7;
+  PRINT_SIZE(&long_long_v);
+  uint8_t uint8_t_v = 7;
+  PRINT_SIZE(&uint8_t_v);
+  uint16_t uint16_t_v = 7;
+  PRINT_SIZE(&uint16_t_v);
+  uint32_t uint32_t_v = 7;
+  PRINT_SIZE(&uint32_t_v);
+  uint64_t uint64_t_v = 7;
+  PRINT_SIZE(&uint64_t_v);
+  uint_fast8_t uint_fast8_t_v = 7;
+  PRINT_SIZE(&uint_fast8_t_v);
+  uint_fast16_t uint_fast16_t_v = 7;
+  PRINT_SIZE(&uint_fast16_t_v);
+  uintmax_t uintmax_t_v = 7;
+  PRINT_SIZE(&uintmax_t_v);
+  intmax_t intmax_t_v = 7;
+  PRINT_SIZE(&intmax_t_v);
+  __int128 __int128_v = 7;
+  PRINT_SIZE(&__int128_v);
 
   return 0;
 }
