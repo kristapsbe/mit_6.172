@@ -50,7 +50,7 @@ int main(int argc, char** argv) {
   matrix* B;
   matrix* C;
 
-  const int kMatrixSize = 4;
+  const int kMatrixSize = 1000;
 
 
   // Parse command line arguments
@@ -71,28 +71,7 @@ int main(int argc, char** argv) {
     }
   }
 
-  // This is a trick to make the memory bug leads to a wrong output.
-  int size = sizeof(int) * 4;
-  int* temp[20];
-
-  for (int i = 0; i < 20; i++) {
-    temp[i] = (int*)malloc(size);
-    memset(temp[i], 1, size);
-  }
-  int total = 0;
-  for (int i = 0; i < 20; i++) {
-    for (int j = 0; j < 4; j++) {
-      total += temp[i][j];
-    }
-  }
-  if (!total) printf("Trick to stop mallocs from being optimized out.");
-  for (int i = 0; i < 20; i++) {
-    free(temp[i]);
-  }
-
-  fprintf(stderr, "Setup\n");
-
-  A = make_matrix(kMatrixSize, kMatrixSize+1);
+  A = make_matrix(kMatrixSize, kMatrixSize);
   B = make_matrix(kMatrixSize, kMatrixSize);
   C = make_matrix(kMatrixSize, kMatrixSize);
 
@@ -132,14 +111,17 @@ int main(int argc, char** argv) {
 
   fasttime_t time1 = gettime();
   matrix_multiply_run(A, B, C);
+  free_matrix(A);
+  free_matrix(B);
   fasttime_t time2 = gettime();
 
   if (should_print) {
     printf("---- RESULTS ----\n");
     printf("Result: \n");
-    print_matrix(C);
+    print_matrix(C); // I think I managed to somehow fix this in an unintended way (?)
     printf("---- END RESULTS ----\n");
   }
+  free_matrix(C);
 
   if (show_usec) {
     double elapsed = tdiff(time1, time2);
